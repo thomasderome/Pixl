@@ -1,7 +1,8 @@
 ## Player system
-* Movement [ ]
-* Glue on environement [ ]
-* Animation [ ]
+[]
+* Movement []
+* Glue on environement []
+* Animation []
 * Jump [ ]
 
 ## Gadget
