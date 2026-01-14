@@ -57,15 +57,21 @@ public class Pl_movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 movement = transform.right * moveInput.x * speed * Time.fixedDeltaTime;
-        rb.MovePosition(rb.position + movement);
+        Vector2 targetWalkVelocity = transform.right * moveInput.x * speed;
+        float currentVerticalSpeed = Vector2.Dot(rb.linearVelocity, transform.up);
+        Vector2 preservedVerticalVelocity = transform.up * currentVerticalSpeed;
+
+        rb.linearVelocity = targetWalkVelocity + preservedVerticalVelocity;
 
         if (!glue) return;
-        
-        RaycastHit2D ray = Physics2D.Raycast(transform.position,-transform.up, 5f, ground_layer);
-        transform.up = ray.normal;
-        rb.AddForce(ray.normal * -10);
-    }   
+    
+        RaycastHit2D ray = Physics2D.Raycast(transform.position, -transform.up, 5f, ground_layer);
+        if(ray.collider != null) 
+        {
+            transform.up = Vector3.Slerp(transform.up, ray.normal, 10 * Time.fixedDeltaTime);
+            rb.AddForce(ray.normal * -50); 
+        }
+    }  
     
     bool IsGrounded()
     {
