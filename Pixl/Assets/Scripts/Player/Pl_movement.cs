@@ -8,7 +8,6 @@ public class Pl_movement : MonoBehaviour
     private Vector2 moveInput;
     private FixedJoint2D joint;
     private bool glue;
-    private bool reverse;
     
     public float speed;
     public float jump_power;
@@ -58,16 +57,12 @@ public class Pl_movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (transform.up.y <= 0) reverse = true;
-        else reverse = false;
-        
-        if (reverse) transform.Translate(new Vector3(moveInput.x, 0, 0) * Time.deltaTime * speed * -1);
-        else transform.Translate(new Vector3(moveInput.x, 0, 0) * Time.deltaTime * speed);
-        
+        Vector2 movement = transform.right * moveInput.x * speed * Time.fixedDeltaTime;
+        rb.MovePosition(rb.position + movement);
+
         if (!glue) return;
         
         RaycastHit2D ray = Physics2D.Raycast(transform.position,-transform.up, 5f, ground_layer);
-        
         transform.up = ray.normal;
         rb.AddForce(ray.normal * -10);
     }   
