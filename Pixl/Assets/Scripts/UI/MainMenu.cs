@@ -6,6 +6,7 @@ public class MainMenu : MonoBehaviour
     public GameObject menuPanel;
     public GameObject settingsPanel;
     public GameObject selectionPanel;
+    public GameObject gadgetPanel;
 
     void Start()
     {
@@ -24,6 +25,7 @@ public class MainMenu : MonoBehaviour
     public void CloseSelection()
     {
         selectionPanel.SetActive(false);
+        gadgetPanel.SetActive(false);
         menuPanel.SetActive(true);
     }
     
