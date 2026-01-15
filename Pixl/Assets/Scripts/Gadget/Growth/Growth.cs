@@ -6,6 +6,7 @@ public class Growth : MonoBehaviour, Gadget_Interface
     private Player _player;
     
     private bool hold = false;
+    private bool cooldown = false;
     
     [SerializeField] private Sprite gun;
     private Sprite orignal_spr;
@@ -21,11 +22,14 @@ public class Growth : MonoBehaviour, Gadget_Interface
 
     public void Hold()
     {
-        hold = true;
-        _player.rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        orignal_spr = _player.spr.sprite;
-        orignalAngle = _player.transform.rotation.eulerAngles;
-        _player.spr.sprite = gun;
+        if (!cooldown)
+        {
+            hold = true;
+            _player.rb.constraints = RigidbodyConstraints2D.FreezeAll;
+            orignal_spr = _player.spr.sprite;
+            orignalAngle = _player.transform.rotation.eulerAngles;
+            _player.spr.sprite = gun;
+        }
     }
         
     public void Trigger()
@@ -74,9 +78,22 @@ public class Growth : MonoBehaviour, Gadget_Interface
         {
             finish += Time.deltaTime;
             _object.localScale = Vector3.Lerp(_object.localScale, to, finish / time);
-            yield return null;
+            yield return new WaitForEndOfFrame();
         }
         _object.localScale = to;
+
+        yield return new WaitForSecondsRealtime(5.0f);
+        
+        finish = 0;
+        to = _object.localScale / 1.2f;
+        time = 5f;
+        while (finish < time)
+        {
+            finish += Time.deltaTime;
+            _object.localScale = Vector3.Lerp(_object.localScale, to, finish / time);
+            yield return new WaitForEndOfFrame();
+        }
+        transform.localScale = to;
     }
     
     private void Hide_laser()

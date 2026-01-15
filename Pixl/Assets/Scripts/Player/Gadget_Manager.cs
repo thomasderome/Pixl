@@ -10,9 +10,14 @@ public class Gadget_Manager : MonoBehaviour
 
     public void Equip(GameObject gadget, int slot)
     {
+        GameObject Temp;
         if (slot == 1)
         {
-            Gadget1 = Instantiate(gadget, transform).GetComponent<Gadget_Interface>();
+            Temp = Instantiate(gadget);
+            Temp.transform.SetParent(transform);
+            Temp.transform.localPosition = new Vector3(-0.5f, 0.5f, 0);
+            
+            Gadget1 = Temp.GetComponent<Gadget_Interface>();
             Gadget1.Init(_player);
         } else if (slot == 2)
         {
