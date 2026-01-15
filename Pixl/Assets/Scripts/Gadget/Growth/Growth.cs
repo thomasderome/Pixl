@@ -4,9 +4,16 @@ using UnityEngine;
 public class Growth : MonoBehaviour, Gadget_Interface
 {
     private Player _player;
+
+    [SerializeField] private SpriteRenderer spr_icon;
+    
+    private float growth_power = 1.2f;
+    private float time_growth = 8f;
     
     private bool hold = false;
+    
     private bool cooldown = false;
+    private float cooldown_time = 6f;
     
     [SerializeField] private Sprite gun;
     private Sprite orignal_spr;
@@ -22,18 +29,19 @@ public class Growth : MonoBehaviour, Gadget_Interface
 
     public void Hold()
     {
-        if (!cooldown)
-        {
-            hold = true;
-            _player.rb.constraints = RigidbodyConstraints2D.FreezeAll;
-            orignal_spr = _player.spr.sprite;
-            orignalAngle = _player.transform.rotation.eulerAngles;
-            _player.spr.sprite = gun;
-        }
+        if (cooldown) return;
+        
+        hold = true;
+        _player.rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        orignal_spr = _player.spr.sprite;
+        orignalAngle = _player.transform.rotation.eulerAngles;
+        _player.spr.sprite = gun;
     }
         
     public void Trigger()
     {
+        if (cooldown) return;
+        
         lineRenderer.enabled = true;
         lineRenderer.SetPosition(0, _player.transform.position);
 
@@ -44,7 +52,7 @@ public class Growth : MonoBehaviour, Gadget_Interface
         {
             lineRenderer.SetPosition(1, hit.point);
             Transform hit_transform = hit.collider.gameObject.transform;
-            StartCoroutine(Smooth_scale(hit_transform, hit_transform.localScale * 1.2f, 1f));
+            StartCoroutine(Smooth_scale(hit_transform, hit_transform.localScale * growth_power, 1f));
             hit.collider.gameObject.AddComponent<Reset_Scale>();
         }
         else
@@ -54,6 +62,7 @@ public class Growth : MonoBehaviour, Gadget_Interface
         }
         
         Invoke("Hide_laser", 0.2f);
+        StartCoroutine(Cooldown_calculate());
         
         hold = false;
         _player.spr.sprite = orignal_spr;
@@ -82,7 +91,7 @@ public class Growth : MonoBehaviour, Gadget_Interface
         }
         _object.localScale = to;
 
-        yield return new WaitForSecondsRealtime(5.0f);
+        yield return new WaitForSecondsRealtime(time_growth);
         
         finish = 0;
         to = _object.localScale / 1.2f;
@@ -93,7 +102,16 @@ public class Growth : MonoBehaviour, Gadget_Interface
             _object.localScale = Vector3.Lerp(_object.localScale, to, finish / time);
             yield return new WaitForEndOfFrame();
         }
-        transform.localScale = to;
+        _object.localScale = to;
+    }
+
+    IEnumerator Cooldown_calculate()
+    {
+        cooldown = true;
+        spr_icon.color = Color.red;
+        yield return new WaitForSeconds(cooldown_time);
+        spr_icon.color = Color.white;
+        cooldown = false;
     }
     
     private void Hide_laser()

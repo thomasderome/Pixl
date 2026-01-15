@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e999036921ca2082bbc97965fffa832, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Growth
+  spr_icon: {fileID: -3914107730070448663}
   gun: {fileID: -6628414004274166170, guid: a9daf297781cf665fa6839803734a8f6, type: 3}
   lineRenderer: {fileID: 4583689454574028123}
   range: 200
