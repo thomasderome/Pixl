@@ -1,0 +1,86 @@
+using System.Collections;
+using UnityEngine;
+
+public class Growth : MonoBehaviour, Gadget_Interface
+{
+    private Player _player;
+    
+    private bool hold = false;
+    
+    [SerializeField] private Sprite gun;
+    private Sprite orignal_spr;
+    private Vector3 orignalAngle;
+    
+    public LineRenderer lineRenderer;
+    public float range = 200f;
+
+    public void Init(Player player)
+    {
+        _player = player;
+    }
+
+    public void Hold()
+    {
+        hold = true;
+        _player.rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        orignal_spr = _player.spr.sprite;
+        orignalAngle = _player.transform.rotation.eulerAngles;
+        _player.spr.sprite = gun;
+    }
+        
+    public void Trigger()
+    {
+        lineRenderer.enabled = true;
+        lineRenderer.SetPosition(0, _player.transform.position);
+
+        RaycastHit2D hit = Physics2D.Raycast(_player.transform.position, _player.transform.right, range,
+            _player.ground_layer);
+        
+        if (hit)
+        {
+            lineRenderer.SetPosition(1, hit.point);
+            Transform hit_transform = hit.collider.gameObject.transform;
+            StartCoroutine(Smooth_scale(hit_transform, hit_transform.localScale * 1.2f, 1f));
+            hit.collider.gameObject.AddComponent<Reset_Scale>();
+        }
+        else
+        {
+            Vector3 directionMax = _player.transform.position + (_player.transform.right * range);
+            lineRenderer.SetPosition(1, directionMax);
+        }
+        
+        Invoke("Hide_laser", 0.2f);
+        
+        hold = false;
+        _player.spr.sprite = orignal_spr;
+        _player.rb.constraints = RigidbodyConstraints2D.None;
+        _player.transform.rotation = Quaternion.Euler(orignalAngle.x, orignalAngle.y,orignalAngle.z);
+    }
+
+    public void FixedUpdate()
+    {
+        if (!hold) return;
+        if (_player.moveInput.x != 0 && _player.moveInput.y != 0)
+        {
+            float angle = Mathf.Atan2(_player.moveInput.y, _player.moveInput.x) * Mathf.Rad2Deg;
+            _player.transform.rotation = Quaternion.Euler(0, 0, angle);
+        }
+    }
+
+    IEnumerator Smooth_scale(Transform _object, Vector3 to, float time)
+    {
+        float finish = 0;
+        while (finish < time)
+        {
+            finish += Time.deltaTime;
+            _object.localScale = Vector3.Lerp(_object.localScale, to, finish / time);
+            yield return null;
+        }
+        _object.localScale = to;
+    }
+    
+    private void Hide_laser()
+    {
+        lineRenderer.enabled = false;
+    }
+}

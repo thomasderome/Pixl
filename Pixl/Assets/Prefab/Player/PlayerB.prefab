@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 528127176187475726}
   - component: {fileID: 2784396860213641104}
   - component: {fileID: 254612951151791193}
+  - component: {fileID: 3947576722748465174}
+  - component: {fileID: 1364743946533644220}
   m_Layer: 0
   m_Name: PlayerB
   m_TagString: Player
@@ -30,7 +32,7 @@ Transform:
   m_GameObject: {fileID: 3682053111060208173}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.383, y: 1.95, z: 0}
+  m_LocalPosition: {x: -7.54448, y: 0.53959, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1.1896265}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -153,11 +155,11 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 0.3472
+  m_UseAutoMass: 1
+  m_Mass: 0.7232301
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.5
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -182,7 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInput
   m_Actions: {fileID: -944628639613478452, guid: 7a405b5eaf89a01829df6e5e9da1db5e, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -193,7 +195,87 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 254612951151791193}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnMove
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 773b12a7-5c64-4ef7-8595-94e0ac6f1268
+    m_ActionName: 'Player/Move[/Gamepad/leftStick,/Keyboard/a,/Keyboard/d,/Keyboard/leftArrow,/Keyboard/rightArrow]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3947576722748465174}
+        m_TargetAssemblyTypeName: Gadget_Manager, Assembly-CSharp
+        m_MethodName: OnGadget1
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 349de617-ed0b-4172-9b3e-e9dd73e6e1a1
+    m_ActionName: 'Player/Gadget1[/Gamepad/buttonWest,/Keyboard/q]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3947576722748465174}
+        m_TargetAssemblyTypeName: Gadget_Manager, Assembly-CSharp
+        m_MethodName: OnGadget2
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 75217587-6fa4-487e-a073-86522710773d
+    m_ActionName: 'Player/Gadget2[/Gamepad/buttonNorth,/Keyboard/e]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3947576722748465174}
+        m_TargetAssemblyTypeName: Gadget_Manager, Assembly-CSharp
+        m_MethodName: OnGadget3
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: e5f42e70-b0c1-4e17-9889-a5af9ba53c8f
+    m_ActionName: 'Player/Gadget3[/Gamepad/buttonEast,/Keyboard/f]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 254612951151791193}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fe855fd8-541d-4d98-8268-6a1c792155a3
+    m_ActionName: 'Player/Jump[/Gamepad/buttonSouth,/Keyboard/space]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -211,7 +293,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 677565bd74af838b9a378a51ffa32aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pl_movement
+  glue: 0
   speed: 5
+  jump_power: 8
+  rb: {fileID: 528127176187475726}
+  spr: {fileID: 1391188758929244792}
+  ground_layer:
+    serializedVersion: 2
+    m_Bits: 64
+  ground_check: {fileID: 5995959329212603398}
+--- !u!114 &3947576722748465174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3682053111060208173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 06aea4071aff4d1e875f041dec9b337c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Gadget_Manager
+  _player: {fileID: 254612951151791193}
+--- !u!114 &1364743946533644220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3682053111060208173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd4c498ab3bf47a68194dd56293ac6f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SelectGadget
+  Growth: {fileID: 1904230205697251375, guid: f9f460d04fa943f94940fb766d3fb2f5, type: 3}
 --- !u!1 &5471752983571298059
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,7 +337,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5995959329212603398}
-  - component: {fileID: 5089671385998346712}
   m_Layer: 0
   m_Name: Ground_check
   m_TagString: Untagged
@@ -244,16 +359,3 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4619582212362230600}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5089671385998346712
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5471752983571298059}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 677565bd74af838b9a378a51ffa32aa9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Pl_movement
-  speed: 5

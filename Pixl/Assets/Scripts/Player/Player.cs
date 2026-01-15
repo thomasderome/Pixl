@@ -1,29 +1,27 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Pl_movement : MonoBehaviour
+public class Player : MonoBehaviour
 {
-    private Vector2 moveInput;
+    public Vector2 moveInput;
     private FixedJoint2D joint;
-    private bool glue;
+    public bool glue;
     
-    public float speed;
+    public float speed; 
     public float jump_power;
     public Rigidbody2D rb;
     public SpriteRenderer spr;
     public LayerMask ground_layer;
     public Transform ground_check;
     
-    public void OnMove(InputValue value)
+    public void OnMove(InputAction.CallbackContext context)
     {
-        moveInput = value.Get<Vector2>();
+        moveInput = context.ReadValue<Vector2>();
     }
     
-    void OnJump(InputValue value)
+    public void OnJump(InputAction.CallbackContext context)
     {
-        if (value.isPressed && IsGrounded())
+        if (context.started && IsGrounded())
         {
             if (glue)
             {
@@ -38,12 +36,10 @@ public class Pl_movement : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (glue) return;
-        
-        Debug.Log("Enter");
         rb.gravityScale = 0;
         
         transform.up = collision.contacts[0].normal;
-        rb.AddForce(collision.contacts[0].normal * -20);
+        rb.AddForce(collision.contacts[0].normal * -50);
         
         glue = true;
     }   
@@ -51,8 +47,8 @@ public class Pl_movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (moveInput.x > 0) spr.flipX = false;
-        else if (moveInput.x < 0) spr.flipX = true;
+        //if (moveInput.x > 0) spr.flipX = false;
+        //else if (moveInput.x < 0) spr.flipX = true;
     }
 
     private void FixedUpdate()
