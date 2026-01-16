@@ -293,6 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 677565bd74af838b9a378a51ffa32aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pl_movement
+  moveInput: {x: 0, y: 0}
   glue: 0
   speed: 5
   jump_power: 8
@@ -327,7 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd4c498ab3bf47a68194dd56293ac6f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SelectGadget
-  Growth: {fileID: 1904230205697251375, guid: f9f460d04fa943f94940fb766d3fb2f5, type: 3}
+  Growth: {fileID: 1058383514423518368, guid: b1f1ef1f7e731d64580dafe7d704cf9c, type: 3}
 --- !u!1 &5471752983571298059
 GameObject:
   m_ObjectHideFlags: 0
