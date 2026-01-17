@@ -21,11 +21,19 @@ public class Gadget_Manager : MonoBehaviour
             Gadget1.Init(_player);
         } else if (slot == 2)
         {
-            Gadget2 = Instantiate(gadget, transform).GetComponent<Gadget_Interface>();
+            Temp = Instantiate(gadget);
+            Temp.transform.SetParent(transform);
+            Temp.transform.localPosition = new Vector3(-0.13f, 0.65f, 0);
+            
+            Gadget2 = Temp.GetComponent<Gadget_Interface>();
             Gadget2.Init(_player);
         } else if (slot == 3)
         {
-            Gadget3 = Instantiate(gadget, transform).GetComponent<Gadget_Interface>();
+            Temp = Instantiate(gadget);
+            Temp.transform.SetParent(transform);
+            Temp.transform.localPosition = new Vector3(0.3f, 0.54f, 0);
+            
+            Gadget3 = Temp.GetComponent<Gadget_Interface>();
             Gadget3.Init(_player);
         }
     }
@@ -39,12 +47,25 @@ public class Gadget_Manager : MonoBehaviour
         {
             Gadget1.Trigger();
         }
-
     }
     public void OnGadget2(InputAction.CallbackContext context)
     {
+        if (context.started)
+        {
+            Gadget1.Hold();
+        } else if (context.canceled)
+        {
+            Gadget1.Trigger();
+        }
     }
     public void OnGadget3(InputAction.CallbackContext context)
     {
+        if (context.started)
+        {
+            Gadget1.Hold();
+        } else if (context.canceled)
+        {
+            Gadget1.Trigger();
+        }
     }
 }

@@ -67,6 +67,8 @@ public class Growth : MonoBehaviour, Gadget_Interface
         hold = false;
         _player.spr.sprite = orignal_spr;
         _player.rb.constraints = RigidbodyConstraints2D.None;
+        _player.rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
         _player.transform.rotation = Quaternion.Euler(orignalAngle.x, orignalAngle.y,orignalAngle.z);
     }
 

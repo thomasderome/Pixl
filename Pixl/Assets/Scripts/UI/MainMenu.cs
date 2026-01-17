@@ -1,13 +1,12 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MainMenu : MonoBehaviour
 {
     public GameObject menuPanel;
     public GameObject settingsPanel;
     public GameObject selectionPanel;
-    public GameObject gadgetPanel;
-
     void Start()
     {
         menuPanel.SetActive(true);
@@ -19,13 +18,13 @@ public class MainMenu : MonoBehaviour
     {
         menuPanel.SetActive(false);
         selectionPanel.SetActive(true);
-
+        selectionPanel.GetComponent<PlayerInputManager>().EnableJoining();
     }
     
     public void CloseSelection()
     {
+        selectionPanel.GetComponent<PlayerJoin>().Clear_player();
         selectionPanel.SetActive(false);
-        gadgetPanel.SetActive(false);
         menuPanel.SetActive(true);
     }
     

@@ -43,13 +43,12 @@ public class SelectScript : MonoBehaviour
     {
         if (currentTargetImage == null)
             return;
-        
+
         Image buttonImage = button.GetComponent<Image>();
         currentTargetImage.sprite = buttonImage.sprite;
         int slotIndex = System.Array.IndexOf(loadoutSlots, currentTargetImage);
         selectedGadgets[slotIndex]=button.gameObject;
         selectionPanel.SetActive(false);
-        
     }
 
     public void ConfirmSelection()

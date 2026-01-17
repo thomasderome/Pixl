@@ -1,8 +1,13 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    public int WIN = 0;
+    public bool die = false;
+    public GameManager GameManager;
+    
     public Vector2 moveInput;
     private FixedJoint2D joint;
     public bool glue;
@@ -67,7 +72,29 @@ public class Player : MonoBehaviour
             transform.up = Vector3.Slerp(transform.up, ray.normal, 10 * Time.fixedDeltaTime);
             rb.AddForce(ray.normal * -50); 
         }
-    }  
+    }
+
+    private void OnTriggerEnter2D(Collider2D zone)
+    {
+        GameManager.Death(this.gameObject);
+    }
+
+    public void Die()
+    {
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        rb.gravityScale = 0;
+        spr.enabled = false;
+        die = true;
+    }
+
+    public void Revive()
+    {
+        rb.gravityScale = 1.5f;
+        spr.enabled = true;
+        rb.constraints = RigidbodyConstraints2D.None;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        die = false;
+    }
     
     bool IsGrounded()
     {
