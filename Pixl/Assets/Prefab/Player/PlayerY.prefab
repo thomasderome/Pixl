@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3947576722748465174}
   - component: {fileID: 1364743946533644220}
   m_Layer: 7
-  m_Name: PlayerB
+  m_Name: PlayerY
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,7 +88,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 6422524540848591928, guid: 857c011ebb293beb79f36476b4eb2f0f, type: 3}
+  m_Sprite: {fileID: 5046547421396100383, guid: 3ed59e166470f3ae09fb2957a1769df7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -136,7 +136,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.96875, y: 0.875}
+    oldSize: {x: 0.31, y: 0.28}
     newSize: {x: 0.96875, y: 0.875}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

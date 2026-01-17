@@ -7,7 +7,7 @@ public class Growth : MonoBehaviour, Gadget_Interface
 
     [SerializeField] private SpriteRenderer spr_icon;
     
-    private float growth_power = 1.2f;
+    private float growth_power = 1.5f;
     private float time_growth = 8f;
     
     private bool hold = false;
@@ -96,7 +96,7 @@ public class Growth : MonoBehaviour, Gadget_Interface
         yield return new WaitForSecondsRealtime(time_growth);
         
         finish = 0;
-        to = _object.localScale / 1.2f;
+        to = _object.localScale / growth_power;
         time = 5f;
         while (finish < time)
         {

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 254612951151791193}
   - component: {fileID: 3947576722748465174}
   - component: {fileID: 1364743946533644220}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerR
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -293,6 +293,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 677565bd74af838b9a378a51ffa32aa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pl_movement
+  WIN: 0
+  die: 0
+  GameManager: {fileID: 0}
   moveInput: {x: 0, y: 0}
   glue: 0
   speed: 5
@@ -338,7 +341,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5995959329212603398}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ground_check
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}

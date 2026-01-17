@@ -4382,7 +4382,9 @@ MonoBehaviour:
   Select_Panel: {fileID: 1296051371382330512, guid: 2fe6782bdab2d87d0bbd8d8d9d18c584, type: 3}
   Player:
   - {fileID: 3682053111060208173, guid: a6cbe663483cb3508b0d0b744b4e2ce9, type: 3}
-  - {fileID: 3682053111060208173, guid: 9ef83726cee1612f68f3ed2d1680ace9, type: 3}
+  - {fileID: 3682053111060208173, guid: 3f4915052932718b0983811b0d72fae5, type: 3}
+  - {fileID: 3682053111060208173, guid: 6e1f876bcd1c8524681973c002b12170, type: 3}
+  - {fileID: 3682053111060208173, guid: cf4f8265631aa473c98ee703e1dc325a, type: 3}
 --- !u!114 &1982866857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4396,7 +4398,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInputManager
   m_NotificationBehavior: 2
-  m_MaxPlayerCount: 2
+  m_MaxPlayerCount: 4
   m_AllowJoining: 1
   m_JoinBehavior: 0
   m_PlayerJoinedEvent:

@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class SelectScript : MonoBehaviour
 {
@@ -51,22 +52,29 @@ public class SelectScript : MonoBehaviour
         selectionPanel.SetActive(false);
     }
 
-    public void ConfirmSelection()
+    public List<GameObject> ConfirmSelection()
     {
-        string finalLoadout = "";
+        List<GameObject> Gadget_sel = new List<GameObject>();
         for (int i = 0; i < selectedGadgets.Length; i++)
         {
             GameObject gadget = selectedGadgets[i];
-            int slot = i + 1;
-            if (gadget.name == "Random")
+            if (gadget.name == "Random") gadget = allGadgets[Random.Range(0, allGadgets.Length)];
+            else
             {
-                GameObject randomPick = allGadgets[Random.Range(0, allGadgets.Length)];
-                gadget = randomPick;
+                foreach (var _gadget in allGadgets)
+                {
+                    if (gadget.name == _gadget.name)
+                    {
+                        gadget = _gadget;
+                        break;
+                    }
+                }
+                if (gadget.GetComponent<Button>()) gadget = allGadgets[Random.Range(0, allGadgets.Length)];
             }
-            finalLoadout+= $"Slot {i+1}: {gadget.name} ";
+            Gadget_sel.Add(gadget);
         }
-        Debug.Log(finalLoadout);
-        
+
+        return Gadget_sel;
     }
     
     public void ResetToDefault()

@@ -18,18 +18,18 @@ public class PlayerJoin : MonoBehaviour
     
     public void Join(PlayerInput playerInput)
     {
-        if (number_player == 2) return;
+        if (number_player == 4) return;
         
         GameObject Temp = Instantiate(Select_Panel);
         Temp.transform.SetParent(transform);
 
-        if (number_player == 0) Temp.transform.localPosition = new Vector3(50, -20, 0);
-
-        else if (number_player == 1) Temp.transform.localPosition = new Vector3(350, -20, 0);
+        Temp.transform.localPosition = new Vector3(-135 + (155 * number_player), -20, 0);
 
         pannels.Add(Temp);
         controller.Add(playerInput);
+        
         number_player += 1;
+        if (number_player == 4) GetComponent<PlayerInputManager>().enabled = false;
     }
 
     public void Clear_player()
@@ -51,7 +51,8 @@ public class PlayerJoin : MonoBehaviour
     
     public void Play()
     {
-        if (play) return;
+        if (play || controller.Count < 1) return;
+        
         play = true;
         GetComponent<PlayerInputManager>().enabled = false;
         
@@ -66,8 +67,11 @@ public class PlayerJoin : MonoBehaviour
             var devices = controller[i].user.pairedDevices;
             foreach (var device in devices) InputUser.PerformPairingWithDevice(device, Player_controller.user);
             
+            List<GameObject> Gadget_sel = pannels[i].GetComponent<SelectScript>().ConfirmSelection();
+            for (int j = 0; j < Gadget_sel.Count; j++) Player_Temp.GetComponent<Gadget_Manager>().Equip(Gadget_sel[j], j+1);
+            
             DontDestroyOnLoad(Player_Temp);
         }
-        SceneManager.LoadScene("Map1");
+        SceneManager.LoadScene(1);
     }
 }

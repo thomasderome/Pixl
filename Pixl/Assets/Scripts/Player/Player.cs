@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
     
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (context.started && IsGrounded())
+        if (context.started && IsGrounded() && !die)
         {
             if (glue)
             {

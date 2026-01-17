@@ -550,6 +550,7 @@ MonoBehaviour:
   spawn:
   - {fileID: 710402809}
   - {fileID: 2026414252}
+  Scoreboard: {fileID: 7913468911895860647, guid: 806ca9eb3bdfcb6e39ad1d0ed8751263, type: 3}
 --- !u!4 &741606423
 Transform:
   m_ObjectHideFlags: 0
