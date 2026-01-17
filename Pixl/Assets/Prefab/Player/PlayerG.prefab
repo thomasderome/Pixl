@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 2784396860213641104}
   - component: {fileID: 254612951151791193}
   - component: {fileID: 3947576722748465174}
-  - component: {fileID: 1364743946533644220}
   m_Layer: 7
   m_Name: PlayerG
   m_TagString: Player
@@ -319,19 +318,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gadget_Manager
   _player: {fileID: 254612951151791193}
---- !u!114 &1364743946533644220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3682053111060208173}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd4c498ab3bf47a68194dd56293ac6f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SelectGadget
-  Growth: {fileID: 1904230205697251375, guid: f9f460d04fa943f94940fb766d3fb2f5, type: 3}
 --- !u!1 &5471752983571298059
 GameObject:
   m_ObjectHideFlags: 0
