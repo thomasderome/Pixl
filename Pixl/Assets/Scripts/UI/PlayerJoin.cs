@@ -59,7 +59,6 @@ public class PlayerJoin : MonoBehaviour
         for (int i = 0; i < controller.Count; i++)
         {
             GameObject Player_Temp = Instantiate(Player[i]);
-            Player_Temp.GetComponent<Player>().Die();
             
             PlayerInput Player_controller = Player_Temp.GetComponent<PlayerInput>();
             
@@ -70,8 +69,10 @@ public class PlayerJoin : MonoBehaviour
             List<GameObject> Gadget_sel = pannels[i].GetComponent<SelectScript>().ConfirmSelection();
             for (int j = 0; j < Gadget_sel.Count; j++) Player_Temp.GetComponent<Gadget_Manager>().Equip(Gadget_sel[j], j+1);
             
+            Player_Temp.GetComponent<Player>().Die();
             DontDestroyOnLoad(Player_Temp);
         }
-        SceneManager.LoadScene(1);
+
+        SceneManager.LoadScene(Random.Range(1, SceneManager.sceneCount));
     }
 }

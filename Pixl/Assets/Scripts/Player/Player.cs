@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.PlayerLoop;
 
 public class Player : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class Player : MonoBehaviour
     public Vector2 moveInput;
     private FixedJoint2D joint;
     public bool glue;
+
+    public bool stop_animation = false;
     
     public float speed; 
     public float jump_power;
@@ -52,8 +55,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (moveInput.x > 0) spr.flipX = false;
-        //else if (moveInput.x < 0) spr.flipX = true;
+        if (moveInput.x > 0 && !stop_animation) spr.flipX = false;
+        else if (moveInput.x < 0 && !stop_animation) spr.flipX = true;
     }
 
     private void FixedUpdate()
@@ -78,18 +81,21 @@ public class Player : MonoBehaviour
     {
         GameManager.Death(this.gameObject);
     }
-
+    
     public void Die()
     {
+        GetComponent<Gadget_Manager>().Set_gadget(true);
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
         rb.gravityScale = 0;
         spr.enabled = false;
         die = true;
+        glue = false;
     }
 
     public void Revive()
     {
         rb.gravityScale = 1.5f;
+        GetComponent<Gadget_Manager>().Set_gadget(false);
         spr.enabled = true;
         rb.constraints = RigidbodyConstraints2D.None;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;

@@ -6,6 +6,7 @@ public class Growth : MonoBehaviour, Gadget_Interface
     private Player _player;
 
     [SerializeField] private SpriteRenderer spr_icon;
+    [SerializeField] private LayerMask attack;
     
     private float growth_power = 1.5f;
     private float time_growth = 8f;
@@ -30,12 +31,15 @@ public class Growth : MonoBehaviour, Gadget_Interface
     public void Hold()
     {
         if (cooldown) return;
+        _player.stop_animation = true;
+        _player.GetComponent<Gadget_Manager>().Set_gadget(true, false);
         
         hold = true;
         _player.rb.constraints = RigidbodyConstraints2D.FreezeAll;
         orignal_spr = _player.spr.sprite;
         orignalAngle = _player.transform.rotation.eulerAngles;
         _player.spr.sprite = gun;
+        _player.spr.flipX = false;
     }
         
     public void Trigger()
@@ -44,27 +48,34 @@ public class Growth : MonoBehaviour, Gadget_Interface
         
         lineRenderer.enabled = true;
         lineRenderer.SetPosition(0, _player.transform.position);
-
-        RaycastHit2D hit = Physics2D.Raycast(_player.transform.position, _player.transform.right, range,
-            _player.ground_layer);
         
-        if (hit)
-        {
-            lineRenderer.SetPosition(1, hit.point);
-            Transform hit_transform = hit.collider.gameObject.transform;
-            StartCoroutine(Smooth_scale(hit_transform, hit_transform.localScale * growth_power, 1f));
-            hit.collider.gameObject.AddComponent<Reset_Scale>();
-        }
-        else
+        RaycastHit2D[] allhit = Physics2D.RaycastAll(_player.transform.position, _player.transform.right, range);
+        if (allhit.Length == 0)
         {
             Vector3 directionMax = _player.transform.position + (_player.transform.right * range);
             lineRenderer.SetPosition(1, directionMax);
         }
-        
+        else
+        {
+            for (int i = 0; i < allhit.Length; i++)
+            {
+                if (allhit[i].collider != _player.GetComponent<Collider2D>() || i != 0)
+                {
+                    lineRenderer.SetPosition(1, allhit[i].point);
+                    Transform hit_transform = allhit[i].collider.gameObject.transform;
+                    StartCoroutine(Smooth_scale(hit_transform, hit_transform.localScale * growth_power, 1f));
+                    break;
+                }
+            }
+        }
+
         Invoke("Hide_laser", 0.2f);
         StartCoroutine(Cooldown_calculate());
         
         hold = false;
+        _player.GetComponent<Gadget_Manager>().Set_gadget(false, false);
+        _player.stop_animation = false;
+
         _player.spr.sprite = orignal_spr;
         _player.rb.constraints = RigidbodyConstraints2D.None;
         _player.rb.constraints = RigidbodyConstraints2D.FreezeRotation;

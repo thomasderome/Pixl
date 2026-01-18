@@ -54,6 +54,8 @@ MonoBehaviour:
   - {fileID: 6565024413385805763}
   allGadgets:
   - {fileID: 1904230205697251375, guid: f9f460d04fa943f94940fb766d3fb2f5, type: 3}
+  - {fileID: 1904230205697251375, guid: f69c443c67e559c43bea44cd935ebffb, type: 3}
+  - {fileID: 1904230205697251375, guid: d6c6e4c2bd53bd534aa8a49402834698, type: 3}
 --- !u!1001 &582059583533600974
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -627,7 +629,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6715773081424171266, guid: 1283f8de8e45a4b43a37ca385ca5f5d2, type: 3}
       propertyPath: m_Name
-      value: Arrow
+      value: Bow
       objectReference: {fileID: 0}
     - target: {fileID: 7032532035315114402, guid: 1283f8de8e45a4b43a37ca385ca5f5d2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size

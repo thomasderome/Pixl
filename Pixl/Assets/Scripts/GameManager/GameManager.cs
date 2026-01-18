@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 
 public class GameManager : MonoBehaviour
 {
@@ -41,7 +43,11 @@ public class GameManager : MonoBehaviour
 
     public void Death(GameObject player)
     {
-        if (Players.Count == 1) Win(Players[0]);
+        if (Players.Count == 1)
+        {
+            Win(Players[0]);
+            return;
+        }
         
         for (int i = 0; i < Players.Count; i++)
         {
@@ -52,13 +58,17 @@ public class GameManager : MonoBehaviour
                 break;
             } 
         }
-        
+
         if (Players.Count == 1) Win(Players[0]);
     }
 
     private void Win(GameObject player)
     {
-        player.GetComponent<Player>().WIN += 1;
+        Player _player = player.GetComponent<Player>();
+        _player.WIN += 1;
+        _player.Die();
+
+        SceneManager.LoadScene(Random.Range(1, SceneManager.sceneCount));
     }
     
     public void Start()

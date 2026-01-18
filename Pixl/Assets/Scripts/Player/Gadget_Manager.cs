@@ -79,9 +79,9 @@ public class Gadget_Manager : MonoBehaviour
         }
     }
 
-    public void Set_gadget(bool type)
+    public void Set_gadget(bool type, bool disable = true)
     {
-        hide_gadget = type;
+        if (disable) hide_gadget = type;
         if (type)
         {
             Gadget1_game.GetComponent<SpriteRenderer>().enabled = false;
