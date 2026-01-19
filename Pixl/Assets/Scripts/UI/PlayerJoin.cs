@@ -73,6 +73,6 @@ public class PlayerJoin : MonoBehaviour
             DontDestroyOnLoad(Player_Temp);
         }
 
-        SceneManager.LoadScene(Random.Range(1, SceneManager.sceneCount));
+        SceneManager.LoadScene(Random.Range(1, SceneManager.sceneCountInBuildSettings));
     }
 }
