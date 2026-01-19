@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.SceneManagement;
 
-
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Transform[] spawn;
@@ -68,7 +67,7 @@ public class GameManager : MonoBehaviour
         _player.WIN += 1;
         _player.Die();
 
-        SceneManager.LoadScene(Random.Range(1, SceneManager.sceneCount));
+        SceneManager.LoadScene(Random.Range(1, SceneManager.sceneCountInBuildSettings));
     }
     
     public void Start()
