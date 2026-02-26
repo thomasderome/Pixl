@@ -1,18 +1,1 @@
-## Player system
-* Movement [ ]
-* Glue on environement [ ]
-* Animation [ ]
-* Jump [ ]
-
-## Gadget
-* Growth ray [ ]
-* Throw [ ]
-* Push [ ]
-* rock [ ]
-* spike [ ]
-* bow [ ]
-* Platform [ ]
-
-## Environnement
-
-## UI
+A video games inspired of Bopl, created during our first Game Jam by @Epitech-Nice. The goal it is recreate an existing game.
